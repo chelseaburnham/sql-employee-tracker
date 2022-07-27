@@ -13,7 +13,9 @@ const db = mysql.createConnection(
   console.log(`Connected to the database.`)
 );
 
-
+db.query('SELECT * FROM employee_db', function (err, results) {
+  err ? console.error(err) : console.table(results);
+});
 
 
 function initialQuestion() {
