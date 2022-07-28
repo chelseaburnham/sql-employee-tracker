@@ -81,9 +81,9 @@ function addEmployee() {
         name: "manager_id"
       },
     ])
-    .then((employeeAnswers) => {
-      db.query('INSERT INTO employee SET ?', employeeAnswers, function (err, results) {
-        err ? console.error(err) : console.log(employeeAnswers, "has been added.");
+    .then((newEmployee) => {
+      db.query('INSERT INTO employee SET ?', newEmployee, function (err, results) {
+        err ? console.error(err) : console.log("New employee has been added.");
         initialQuestion()
       });
     })
@@ -102,23 +102,22 @@ function addRole() {
       {
         type: "input",
         message: "What is the title of the role?",
-        name: "roleTitle"
+        name: "title"
       },
       {
         type: "input",
         message: "What is the role's salary?",
-        name: "roleSalary"
+        name: "salary"
       },
       {
         type: "input",
         message: "What is the deparment id?",
-        name: "departmentId"
+        name: "department_id"
       }
     ])
-    .then(() => {
-      //join new role info to table
-      db.query('SELECT * FROM role', function (err, results) {
-        err ? console.error(err) : console.table(results);
+    .then((newRole) => {
+      db.query('INSERT INTO role SET ?', newRole, function (err, results) {
+        err ? console.error(err) : console.log("New role has been added.");
         initialQuestion()
       });
     })
@@ -137,13 +136,13 @@ function addDepartment() {
       {
         type: "input",
         message: "What is the name of the department?",
-        name: "departmentName"
+        name: "name"
       }
     ])
-    .then(() => {
+    .then((newDepartment) => {
       //join new department info to table
-      db.query('SELECT * FROM department', function (err, results) {
-        err ? console.error(err) : console.table(results);
+      db.query('INSERT INTO department SET ?', newDepartment, function (err, results) {
+        err ? console.error(err) : console.log("New department has been added.");
         initialQuestion()
       });
     })
@@ -168,14 +167,14 @@ function updateEmployeeRole() {
       ])
       .then((newData) => {
         var roleId = 0
-        for (let i=0; i < results.length; i++) {
+        for (let i = 0; i < results.length; i++) {
           console.log(results[i].name)
-          if(results[i].title === newData.employee_role) {
+          if (results[i].title === newData.employee_role) {
             roleId = results[i].id
           }
         }
         db.query('UPDATE employee SET role_id = ? WHERE id = ?', [roleId, newData.employee_id], function (err, results) {
-          err ? console.error(err) : console.log("great");
+          err ? console.error(err) : console.log("Employee role has been udpated.");
           initialQuestion()
         });
       })
