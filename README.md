@@ -1,20 +1,30 @@
+![License](https://img.shields.io/badge/License-MIT-blue.svg)
+
 # sql-employee-tracker
 
+##  Description
+This application uses sql and inquirer to prompt the user for information on employees. You are able to view a list of employees, roles, and departments as a table and add employees, roles, and departments. You are also able to update an employee if their role changes. All of this is using mysql to create an employee database and tables for each item. 
 
-GIVEN a command-line application that accepts user input
-WHEN I start the application
-THEN I am presented with the following options: view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role
-WHEN I choose to view all departments
-THEN I am presented with a formatted table showing department names and department ids
-WHEN I choose to view all roles
-THEN I am presented with the job title, role id, the department that role belongs to, and the salary for that role
-WHEN I choose to view all employees
-THEN I am presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
-WHEN I choose to add a department
-THEN I am prompted to enter the name of the department and that department is added to the database
-WHEN I choose to add a role
-THEN I am prompted to enter the name, salary, and department for the role and that role is added to the database
-WHEN I choose to add an employee
-THEN I am prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
-WHEN I choose to update an employee role
-THEN I am prompted to select an employee to update and their new role and this information is updated in the database
+##  Table of Contents
+* [Installation](#installation)
+* [Usage](#usage)
+* [License](#license)
+* [Contributing](#contributing)
+* [Questions](#questions)
+
+##  Installation
+Inquirer, mysql, and console.table must be installed to run the tests and prompts. <br>
+![Example](./assets/installation.png)
+
+##  Usage
+Here is a [Video Walkthrough]() of how this application can be used. 
+
+## License
+This is licensed under the MIT license.
+
+##  Contributing
+[w3schools](https://www.w3schools.com/)<br />
+[Stack Overflow](https://stackoverflow.com/?newreg=8cd9776f072c449eac02d1ab363597c8)
+
+##  Questions
+If you have any questions about the repo, feel free to email me at chelseaburnham0@gmail.com. You can find more of my work at [http://github.com/chelseaburnham].
