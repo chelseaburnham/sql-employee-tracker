@@ -162,20 +162,8 @@ function updateEmployeeRole() {
           message: "What is their new role id?",
           name: "employee_role"
         }
-        // {
-        //   type: "list",
-        //   message: "What is the new role id?",
-        //   name: "employee_role",
-        //   choices: [results[0].title, results[1].title, results[2].title, results[3].title, results[4].title]
-        // }
       ])
       .then((newData) => {
-        // var roleId = 0
-        // for (let i = 0; i < results.length; i++) {
-        //   if (results[i].title === newData.employee_role) {
-        //     roleId = results[i].id
-        //   }
-        // }
         db.query('UPDATE employee SET role_id = ? WHERE id = ?', [newData.employee_role, newData.employee_id], function (err, results) {
           err ? console.error(err) : console.log("Employee role has been udpated.");
           initialQuestion()
