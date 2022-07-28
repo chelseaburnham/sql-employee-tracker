@@ -50,7 +50,6 @@ function viewEmployees() {
   sqlString += ` inner join role as r on e.role_id = r.id`
   sqlString += ` inner join department as d on r.department_id = d.id`
   sqlString += ` inner join employee as me on e.manager_id = me.id`
-  console.log(sqlString)
   db.query(sqlString, function (err, results) {
     err ? console.error(err) : console.table(results);
     initialQuestion()
@@ -150,7 +149,7 @@ function addDepartment() {
 
 function updateEmployeeRole() {
   db.query('SELECT * FROM role', function (err, results) {
-    err ? console.error(err) : console.log(results)
+    err ? console.error(err) : console.log("Employee has been updated.")
     inquirer
       .prompt([
         {
@@ -159,21 +158,25 @@ function updateEmployeeRole() {
           name: "employee_id"
         },
         {
-          type: "list",
-          message: "What is the new role id?",
-          name: "employee_role",
-          choices: [results[0].title, results[1].title, results[2].title, results[3].title, results[4].title]
+          type: "input",
+          message: "What is their new role id?",
+          name: "employee_role"
         }
+        // {
+        //   type: "list",
+        //   message: "What is the new role id?",
+        //   name: "employee_role",
+        //   choices: [results[0].title, results[1].title, results[2].title, results[3].title, results[4].title]
+        // }
       ])
       .then((newData) => {
-        var roleId = 0
-        for (let i = 0; i < results.length; i++) {
-          console.log(results[i].name)
-          if (results[i].title === newData.employee_role) {
-            roleId = results[i].id
-          }
-        }
-        db.query('UPDATE employee SET role_id = ? WHERE id = ?', [roleId, newData.employee_id], function (err, results) {
+        // var roleId = 0
+        // for (let i = 0; i < results.length; i++) {
+        //   if (results[i].title === newData.employee_role) {
+        //     roleId = results[i].id
+        //   }
+        // }
+        db.query('UPDATE employee SET role_id = ? WHERE id = ?', [newData.employee_role, newData.employee_id], function (err, results) {
           err ? console.error(err) : console.log("Employee role has been udpated.");
           initialQuestion()
         });
