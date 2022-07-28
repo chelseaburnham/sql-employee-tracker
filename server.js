@@ -1,7 +1,9 @@
+// variables to require npm packages
 const mysql = require("mysql2");
 const cTable = require("console.table");
 const inquirer = require("inquirer");
 
+//connecting mysql employee_db
 const db = mysql.createConnection(
   {
     host: '127.0.0.1',
@@ -12,6 +14,7 @@ const db = mysql.createConnection(
   console.log(`Connected to the database.`)
 );
 
+//initial question function which displays choices for users
 function initialQuestion() {
   inquirer
     .prompt([
@@ -43,8 +46,10 @@ function initialQuestion() {
     })
 }
 
+//initializing the initial question function
 initialQuestion()
-// THEN I am presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
+
+//views all employees as a table
 function viewEmployees() {
   var sqlString = 'SELECT e.id, e.first_name, e.last_name, r.title, d.name, r.salary, me.first_name as "manager first_name", me.last_name  as "manager last_name" FROM employee as e'
   sqlString += ` inner join role as r on e.role_id = r.id`
@@ -56,6 +61,7 @@ function viewEmployees() {
   });
 }
 
+//function to add employees
 function addEmployee() {
   inquirer
     .prompt([
@@ -88,6 +94,7 @@ function addEmployee() {
     })
 }
 
+//function to view all roles as a table
 function viewRoles() {
   db.query('SELECT * FROM role', function (err, results) {
     err ? console.error(err) : console.table(results);
@@ -95,6 +102,7 @@ function viewRoles() {
   });
 }
 
+//function to add a new role
 function addRole() {
   inquirer
     .prompt([
@@ -122,6 +130,7 @@ function addRole() {
     })
 }
 
+//function to view all departments as a table
 function viewDepartments() {
   db.query('SELECT * FROM department', function (err, results) {
     err ? console.error(err) : console.table(results);
@@ -129,6 +138,7 @@ function viewDepartments() {
   });
 }
 
+//function to add a new department
 function addDepartment() {
   inquirer
     .prompt([
@@ -139,7 +149,6 @@ function addDepartment() {
       }
     ])
     .then((newDepartment) => {
-      //join new department info to table
       db.query('INSERT INTO department SET ?', newDepartment, function (err, results) {
         err ? console.error(err) : console.log("New department has been added.");
         initialQuestion()
@@ -147,6 +156,7 @@ function addDepartment() {
     })
 }
 
+//function to update an employee's role
 function updateEmployeeRole() {
   db.query('SELECT * FROM role', function (err, results) {
     err ? console.error(err) : console.log("Employee has been updated.")
