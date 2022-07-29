@@ -17,7 +17,7 @@ Inquirer, mysql, and console.table must be installed to run the tests and prompt
 ![Example](./assets/installation.png)
 
 ##  Usage
-Here is a [Video Walkthrough]() of how this application can be used. 
+Here is a [Video Walkthrough](https://watch.screencastify.com/v/AkFJh5sK0aMFJTJNd8jH) of how this application can be used. 
 
 ## License
 This is licensed under the MIT license.
